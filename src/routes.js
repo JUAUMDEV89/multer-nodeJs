@@ -1,9 +1,10 @@
 const { Router } = require('express');
-const { store, login } = require('./controllers/RegisterController');
+const { uploadImage, addImage } = require('./controllers/ImageController');
+const { upload, resize } = require('./middlewares/ImageMiddlewares');
 
 const route = Router();
 
-route.get('/', store);
-route.get('/login', login);
+route.get('/upload', addImage );
+route.post('/upload', upload, resize, uploadImage);
 
 module.exports = route;
